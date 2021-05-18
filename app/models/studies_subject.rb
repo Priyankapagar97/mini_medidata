@@ -1,0 +1,2 @@
+class StudiesSubject < ApplicationRecord
+end

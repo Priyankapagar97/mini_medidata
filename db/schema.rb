@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_170003) do
+ActiveRecord::Schema.define(version: 2021_05_18_131755) do
+
+  create_table "addresses", charset: "utf8mb4", force: :cascade do |t|
+    t.string "address"
+    t.integer "subject_id"
+    t.string "addressable_type"
+    t.integer "addressable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sites", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "study_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_id"], name: "index_sites_on_study_id"
+  end
 
   create_table "studies", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", default: ""
@@ -22,4 +39,26 @@ ActiveRecord::Schema.define(version: 2021_05_04_170003) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "studies_subjects", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "subject_id"
+    t.integer "study_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "study_groups", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subjects", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.string "blood_group", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "sites", "studies"
 end
