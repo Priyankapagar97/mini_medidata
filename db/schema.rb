@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_131755) do
+ActiveRecord::Schema.define(version: 2021_05_18_153621) do
+
+  create_table "account_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_account_histories_on_account_id"
+  end
+
+  create_table "accounts", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "subject_id"
+    t.string "account_no"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_id"], name: "index_accounts_on_subject_id"
+  end
 
   create_table "addresses", charset: "utf8mb4", force: :cascade do |t|
     t.string "address"
@@ -19,6 +35,15 @@ ActiveRecord::Schema.define(version: 2021_05_18_131755) do
     t.integer "addressable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "enrollments", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "study_id", null: false
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_id"], name: "index_enrollments_on_study_id"
+    t.index ["subject_id"], name: "index_enrollments_on_subject_id"
   end
 
   create_table "sites", charset: "utf8mb4", force: :cascade do |t|
@@ -60,5 +85,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_131755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "enrollments", "studies"
+  add_foreign_key "enrollments", "subjects"
   add_foreign_key "sites", "studies"
 end
