@@ -13,7 +13,8 @@ class StudyGroupsController < ApplicationController
     end
 
     def index
-        
+        @study_groups = StudyGroup.all
+  	    render json: @study_groups
     end
 
     private
