@@ -9,18 +9,41 @@ class StudiesController < ApplicationController
         @study = @study_group.studies.create(study_params)
 
         if @study.save
-            render json: { notice: "Study created successfully!!"}
+            # render json: { notice: "Study created successfully!!"}
+            redirect_to studies_path
         else
-            render json: { error: "Could not create study!!"}
+            # render json: { error: "Could not create study!!"}
+            render :new
         end
     end
 
     def index
         puts "Index method called"
-        @study_group = StudyGroup.find(params[:study_group_id])
-        @studies = @study_group.studies.all
+        @studies = Study.all
+        # @study_group = StudyGroup.find(params[:study_group_id])
+        # @studies = @study_group.studies.all
 
-        render json: @studies
+        # render json: @studies
+    end
+
+    def new
+        @study ||= Study.new
+    end
+
+    def active
+        
+    end
+
+    def show
+        
+    end
+
+    def edit
+        
+    end
+
+    def update
+        
     end
 
     def update

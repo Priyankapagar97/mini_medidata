@@ -12,6 +12,10 @@ class StudyGroupsController < ApplicationController
         end
     end
 
+    def index
+        
+    end
+
     private
     def study_group_params
         params.require(:study_group).permit(:name)

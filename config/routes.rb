@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'studies/:study_group_id', to: 'studies#index'
   patch 'update_study/:id', to: 'studies#update'
   delete 'delete_study/:id', to: 'studies#destroy'
-
+  get 'active_studies', to: 'studies#active'
   post 'create', to: 'study_groups#create'
 end
