@@ -10,14 +10,24 @@
         <th> Phase </th>
         <th> Symptoms </th>
       </tr>
-      <%# <% @studies.each do |study| %>
-        <%# <%= render partial: 'study', locals: { study: study } %> 
-      <%# <% end %> 
+      
       <% cache @studies do %>
-        <% @studies.each do |study| %>
-          <%= render partial: 'study', locals: { study: study } %>
+        <%  @studies.each do |study| %>
+          <%= render partial: 'study', locals: { study: study } %> 
         <% end %>
       <% end %>
+
+      <%# <% @studies.each do |study| %>
+        <%# <%= render partial: 'study', locals: { study: study } %> 
+      <%# <% end %>
+
+
+
+      <%# <% cache @studies do %>
+        <%# <% @studies.each do |study| %>
+          <%# <%= render partial: 'study', locals: { study: study } %> 
+        <%# <% end %>
+      <%# <% end %>
     </tbody>
   </table>
 </div> 

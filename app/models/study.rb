@@ -12,4 +12,7 @@ class Study < ApplicationRecord
         attachable.variant :thumb, resize: "100x100"
     end
 
+    belongs_to :study_group, touch: true
+    has_many :participants
+
 end

@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   delete 'delete_study/:id', to: 'studies#destroy'
   get 'active_studies', to: 'studies#active'
   post 'create', to: 'study_groups#create'
-
-
+  get 'study_groups', to: 'study_groups#index'
+  post 'participants', to: 'participants#create'
 
   resources :studies
 

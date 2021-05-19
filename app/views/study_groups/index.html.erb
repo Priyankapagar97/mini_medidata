@@ -1,0 +1,19 @@
+<h1>StudyGroups <%=link_to 'Add StudyGroup', new_study_group_path %> </h1>
+<a></a>
+<div style="border: 1px solid;">
+  <table>
+    <tbody>
+      <tr>
+        <th> Name </th>
+      </tr>
+       
+      <% cache @study_group do %>
+        <%  @study_group.each do |study_group| %>
+          <%= render partial: 'study_group', locals: { study_group: study_group.studies } %>
+        <% end %> 
+      <% end %>
+
+      
+    </tbody>
+  </table>
+</div> 
