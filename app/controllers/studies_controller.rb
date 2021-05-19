@@ -4,7 +4,9 @@ class StudiesController < ApplicationController
     around_action :demo_around_action
 
     def create
-        @study = Study.new(study_params)
+        @study_group = StudyGroup.find(params[:study_group_id]) 
+       
+        @study = @study_group.studies.create(study_params)
 
         if @study.save
             render json: { notice: "Study created successfully!!"}
@@ -15,7 +17,8 @@ class StudiesController < ApplicationController
 
     def index
         puts "Index method called"
-        @studies = Study.all
+        @study_group = StudyGroup.find(params[:study_group_id])
+        @studies = @study_group.studies.all
 
         render json: @studies
     end
@@ -28,6 +31,12 @@ class StudiesController < ApplicationController
         else
             render json: { error: "Could not find study!!"}
         end
+    end
+
+    def destroy
+        @study = Study.find(params[:id])
+        @study.destroy
+        render json: { status: 'success', message: 'delete the study', data: study}
     end
 
     private
