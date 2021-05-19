@@ -9,7 +9,7 @@ class StudiesController < ApplicationController
         @study = @study_group.studies.create(study_params)
 
         if @study.save
-            StudyMailer.with( study: @study ).success_email.deliver_later
+            # StudyMailer.with( study: @study ).success_email.deliver_later
             # render json: { notice: "Study created successfully!!"}
             redirect_to studies_path
         else
