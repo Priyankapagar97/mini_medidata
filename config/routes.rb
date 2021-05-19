@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   delete 'delete_study/:id', to: 'studies#destroy'
   get 'active_studies', to: 'studies#active'
   post 'create', to: 'study_groups#create'
+
+
+
+  resources :studies
+
+  resources :users
 end

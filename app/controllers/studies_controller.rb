@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-    around_action :demo_around_action
+    # around_action :demo_around_action
 
     def create
         @study_group = StudyGroup.find(params[:study_group_id]) 
@@ -9,6 +9,7 @@ class StudiesController < ApplicationController
         @study = @study_group.studies.create(study_params)
 
         if @study.save
+            StudyMailer.with( study: @study ).success_email.deliver_later
             # render json: { notice: "Study created successfully!!"}
             redirect_to studies_path
         else
@@ -22,7 +23,7 @@ class StudiesController < ApplicationController
         @studies = Study.all
         # @study_group = StudyGroup.find(params[:study_group_id])
         # @studies = @study_group.studies.all
-
+        @studies123 = Study.all
         # render json: @studies
     end
 
@@ -71,6 +72,6 @@ class StudiesController < ApplicationController
     end
 
     def study_params
-        params.require(:study).permit(:name, :age_limit, :drug, :phase, :study_group_id)
+        params.require(:study).permit(:name, :age_limit, :drug, :phase, :study_group_id, :symptoms, :my_image)
     end
 end
