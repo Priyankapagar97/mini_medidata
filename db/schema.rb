@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_120600) do
+ActiveRecord::Schema.define(version: 2021_05_19_145417) do
 
   create_table "account_histories", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "account_id"
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_120600) do
     t.string "blood_group", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.boolean "invitation_sent", default: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

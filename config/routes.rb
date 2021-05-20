@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'create', to: 'study_groups#create'
   get 'study_groups', to: 'study_groups#index'
   post 'participants', to: 'participants#create'
+  post 'subjects', to: 'subjects#create'
 
   resources :studies
 
